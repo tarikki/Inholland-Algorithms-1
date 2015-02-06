@@ -8,7 +8,7 @@ import modules.StackOfThings_Array;
 public class StackArrayOfInts {
     public static void main(String[] args) {
         int integer = 0;
-        String string = "dikke";
+        String string = "something";
         StackOfThings_Array stack = new StackOfThings_Array<Integer>();
         stack.push(string);
         stack.push(integer);
