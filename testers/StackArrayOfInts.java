@@ -9,11 +9,12 @@ public class StackArrayOfInts {
     public static void main(String[] args) {
         int integer = 0;
         String string = "something";
-        StackOfThings_Array stack = new StackOfThings_Array<Integer>();
-        stack.push(string);
+        StackOfThings_Array<Integer> stack = new StackOfThings_Array<Integer>();
+        stack.push(9384564);
         stack.push(integer);
         System.out.println(stack);
         stack.pop();
         System.out.println(stack);
+        stack.pop();
     }
 }

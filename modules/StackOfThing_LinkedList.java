@@ -30,8 +30,12 @@ public class StackOfThing_LinkedList<T> implements StackerForList<T>{
 
     @Override
     public T pop() {
+        if (size() != 0){
         T thing = stack.pop();
-        return thing;
+        return thing;}
+        else {
+            throw new ArrayIndexOutOfBoundsException("Noooo");
+        }
     }
 
     @Override

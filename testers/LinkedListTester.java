@@ -15,6 +15,9 @@ public class LinkedListTester {
         stackOfThing_linkedList.push(33);
         System.out.println(stackOfThing_linkedList);
         int anything = stackOfThing_linkedList.pop();
+        stackOfThing_linkedList.pop();
+        stackOfThing_linkedList.pop();
+        stackOfThing_linkedList.pop();
         System.out.println(anything);
         System.out.println(stackOfThing_linkedList);
 

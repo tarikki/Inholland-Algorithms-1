@@ -21,25 +21,24 @@ public class StackOfThings_Array<T> implements Stacker<T> {
     }
 
     @Override
-    public boolean push(Object number) {
+    public boolean push(T number) {
 
-        if (!typeAssigned) {
-            type = number.getClass().getName();
-            typeAssigned = true;
-        }
-
-        if (number.getClass().getName().equals(type)) {
+//        if (!typeAssigned) {
+//            type = number.getClass().getName();
+//            typeAssigned = true;
+//        }
+//
+//        if (number.getClass().getName().equals(type)) {
             @SuppressWarnings("unchecked")
             T[] newStack = (T[]) new Object[size() + 1];
-            System.out.println(stack.getClass().getName());
             System.arraycopy(stack, 0, newStack, 0, stack.length);
-            newStack[newStack.length - 1] = (T) number;
+            newStack[newStack.length - 1] = number;
             stack = newStack;
             return true;
-        } else {
-            System.out.println("nope!");
-            return false;
-        }
+//        } else {
+//            System.out.println("nope!");
+//            return false;
+//        }
 
 
     }
@@ -50,14 +49,17 @@ public class StackOfThings_Array<T> implements Stacker<T> {
     }
 
     @Override
-    public Object pop() {
+    public T pop() {
+        if (size() == 0){
+            return null;
+        } else {
         @SuppressWarnings("unchecked")
         T[] newStack = (T[]) new Object[size() - 1];
-        Object popped = stack[size() - 1];
+        T popped = stack[size() - 1];
         System.arraycopy(stack, 0, newStack, 0, stack.length - 1);
         stack = newStack;
 
-        return popped;
+        return popped;}
     }
 
 

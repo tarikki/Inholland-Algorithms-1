@@ -6,8 +6,8 @@ package interfaces;
 public interface Stacker<T> {
 
     int size();
-    boolean push(Object number);
+    boolean push(T number);
     boolean isEmpty();
-    Object pop();
+    T pop();
 
 }
