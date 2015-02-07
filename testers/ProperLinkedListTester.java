@@ -16,6 +16,14 @@ public class ProperLinkedListTester {
         stack.push(3);
         System.out.println(stack.isEmpty());
         System.out.println(stack);
+        stack.pop();
+        stack.pop();
+        System.out.println(stack);
+        System.out.println(stack.size());
+        stack.pop();
+        stack.pop();
+        System.out.println(stack);
+        System.out.println(stack.size());
 
     }
 }

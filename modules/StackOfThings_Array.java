@@ -8,8 +8,7 @@ import interfaces.Stacker;
 public class StackOfThings_Array<T> implements Stacker<T> {
 
     private T[] stack;
-    private String type;
-    private boolean typeAssigned = false;
+
 
     public StackOfThings_Array() {
         stack = (T[]) new Object[0];
@@ -22,25 +21,12 @@ public class StackOfThings_Array<T> implements Stacker<T> {
 
     @Override
     public boolean push(T number) {
-
-//        if (!typeAssigned) {
-//            type = number.getClass().getName();
-//            typeAssigned = true;
-//        }
-//
-//        if (number.getClass().getName().equals(type)) {
             @SuppressWarnings("unchecked")
             T[] newStack = (T[]) new Object[size() + 1];
             System.arraycopy(stack, 0, newStack, 0, stack.length);
             newStack[newStack.length - 1] = number;
             stack = newStack;
             return true;
-//        } else {
-//            System.out.println("nope!");
-//            return false;
-//        }
-
-
     }
 
     @Override

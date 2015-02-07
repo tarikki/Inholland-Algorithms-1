@@ -6,7 +6,7 @@ package interfaces;
 public interface Stacker<T> {
 
     int size();
-    boolean push(T number);
+    boolean push(T thing);
     boolean isEmpty();
     T pop();
 

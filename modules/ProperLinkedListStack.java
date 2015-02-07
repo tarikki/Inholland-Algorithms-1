@@ -1,15 +1,14 @@
 package modules;
 
-import interfaces.StackerForList;
+import interfaces.Stacker;
+
 
 /**
  * Created by extradikke on 06.02.15.
  */
-public class ProperLinkedListStack<T> implements StackerForList<T> {
+public class ProperLinkedListStack<T> implements Stacker<T> {
     private int size = 0;
-    private Node first;
-    private Node last;
-
+    private Node stackTop;
 
 
     @Override
@@ -19,13 +18,11 @@ public class ProperLinkedListStack<T> implements StackerForList<T> {
 
     @Override
     public boolean push(T thing) {
-        if (first == null){
-            first = new Node(thing);
-            last = first;
+        if (stackTop == null) {
+            stackTop = new Node(thing, null);
             size++;
-        } else { Node tempNode = new Node(thing);
-            last.next = tempNode;
-            last = tempNode;
+        } else {
+            stackTop = new Node(thing, stackTop);
             size++;
 
         }
@@ -39,25 +36,39 @@ public class ProperLinkedListStack<T> implements StackerForList<T> {
 
     @Override
     public T pop() {
-        Node tempNode = last;
-        return null;
+        if (size != 0) {
+            Node popped = stackTop;
+            stackTop = stackTop.previous;
+            size--;
+            return (T) popped.data;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public String toString() {
+        String nodes = "  ";
+        Node next = stackTop;
+        while (next != null) {
+            nodes += next.data + ", ";
+            next = next.previous;
+        }
+        nodes = nodes.substring(0, nodes.length() - 2);
         return "ProperLinkedListStack{" +
                 "size=" + size +
-                ", first=" + first +
-                ", last=" + last +
+                ", data:" + nodes +
+
                 '}';
     }
 
-    public class Node<T>{
+    public class Node<T> {
         private T data;
-        private Node next;
+        private Node previous;
 
-        public Node(T data){
+        public Node(T data, Node previous) {
             this.data = data;
+            this.previous = previous;
         }
 
         @Override
