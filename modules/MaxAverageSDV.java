@@ -39,7 +39,6 @@ public class MaxAverageSDV {
         return "MaxAverageSDV{" +
                 "numbers=" + numbers +
                 ", max=" + max +
-                ", sum=" + sum +
                 ", average=" + average +
                 ", sdv=" + sdv +
                 '}';
