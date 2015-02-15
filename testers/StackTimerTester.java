@@ -8,6 +8,6 @@ import modules.StackTimer;
 public class StackTimerTester {
 
     public static void main(String[] args) {
-        StackTimer stackTimer = new StackTimer(10000, 1000, 1000);
+        StackTimer stackTimer = new StackTimer(10000, 10000, 100);
     }
 }

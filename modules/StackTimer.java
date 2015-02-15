@@ -5,31 +5,39 @@ package modules;
  */
 public class StackTimer {
 
-    ProperLinkedListStack<Integer> stack;
+
 
     public StackTimer(int start, int increment, int times) {
 
         for (int n = start; n < (start + (increment * (times))); n += increment) {
 
-            ProperLinkedListStack<Integer> properLinkedListStack = new ProperLinkedListStack<Integer>();
-            ProperLinkedListStack<Integer> storage = new ProperLinkedListStack<Integer>();
+            ProperLinkedListStack<Integer> properLinkedListStack = new ProperLinkedListStack<>();
+            ProperLinkedListStack<Integer> storage = new ProperLinkedListStack<>();
 
             for (int numbers = 0; numbers < n; numbers++) {
                 properLinkedListStack.push(numbers);
             }
-            long startTime = System.nanoTime();
-//            System.out.println(properLinkedListStack.size());
+            double totalTime = 0;
+            int maxTimes = 10;
+            for (int averaginTimes = 0; averaginTimes < maxTimes; averaginTimes++) {
 
-            for (int i = 0; i < properLinkedListStack.size() + 2; i++) {
+
+            long startTime = System.nanoTime();
+
+
+            for (int i = 0; i < n; i++) {
                 int popped = properLinkedListStack.pop();
                 storage.push(popped);
 
             }
-//            System.out.println(storage.size());
-            for (int i = 0; i < storage.size() + 2; i++) {
+
+            for (int i = 0; i < n; i++) {
                 properLinkedListStack.push(storage.pop());
             }
-            System.out.println("StackSize: " + properLinkedListStack.size() + " Time: " + (double)(System.nanoTime() - startTime)/1000000);
+            totalTime += (double)(System.nanoTime() - startTime)/1000000;
+            }
+            System.out.println(properLinkedListStack.size() + "\t " + totalTime/maxTimes);
+
 
 
         }
