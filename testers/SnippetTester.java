@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class SnippetTester {
     public static void main(String[] args) throws IOException {
         SnippetFinder snippetFinder = new SnippetFinder();
-        snippetFinder.init();
+        snippetFinder.init(0);
         snippetFinder.findSnipet("pleasure", 3);
     }
 }

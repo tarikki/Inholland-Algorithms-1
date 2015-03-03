@@ -17,17 +17,24 @@ public class SnippetFinder {
     ArrayList<String> textArray = new ArrayList<>();
     HashMap<String, ArrayList<Integer>> index = new HashMap<>();
 
-    public void init() {
+
+    public void init(int doublingTimes) {
         try {
+
             text = readFile("/media/extradikke/UbuntuData/programming/java/algorithmsInholland/src/snippet/copperfield.txt", StandardCharsets.UTF_8);
+            for (int i = 0; i < doublingTimes; i++) {
+                text += text;
+            }
             text = text.replace("--", " -- ");
             stringArray = text.split("[ \n\t\r]");
 
             for (String s : stringArray) {
                 if (!s.equals("")) {
-                    textArray.add(s);
+                    textArray.add(s.toLowerCase());
                 }
             }
+
+            System.out.println(textArray.size());
 
             for (int i = 0; i < textArray.size(); i++) {
                 String word = textArray.get(i).replaceAll("^[^\\-a-zA-Z0-9\\s]+|[^\\-a-zA-Z0-9\\s]+$", "");
@@ -51,6 +58,7 @@ public class SnippetFinder {
     }
 
     public void findSnipet(String word, int n) {
+        word = word.toLowerCase();
         ArrayList<Integer> positions = index.get(word);
         for (int k = 0; k < positions.size(); k++) {
             int position = positions.get(k);
@@ -60,14 +68,14 @@ public class SnippetFinder {
             String extraBeginning = "";
             String extraEnding = "";
 
-            for (int i = position - n + 1; i < position + n + 1; i++) {
+            for (int i = position - n; i < position + n + 1; i++) {
                 String retrievedWord = textArray.get(i);
                 stringBuilder.append(retrievedWord + " ");
-                if (retrievedWord.equals("--")){
-                    if (i > position){
+                if (retrievedWord.equals("--")) {
+                    if (i > position) {
                         extraEnding = textArray.get(position + n + 1);
                     } else {
-                        extraBeginning = textArray.get(position-n)+" ";
+                        extraBeginning = textArray.get(position - n) + " ";
                     }
                 }
 
@@ -75,6 +83,10 @@ public class SnippetFinder {
             System.out.println(numbering + extraBeginning + stringBuilder + extraEnding);
 
         }
+    }
+
+    public int getTextSize(){
+        return textArray.size();
     }
 
 }
