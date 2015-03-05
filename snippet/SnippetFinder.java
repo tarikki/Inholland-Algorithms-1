@@ -34,7 +34,7 @@ public class SnippetFinder {
                 }
             }
 
-            System.out.println(textArray.size());
+//            System.out.println(textArray.size());
 
             for (int i = 0; i < textArray.size(); i++) {
                 String word = textArray.get(i).replaceAll("^[^\\-a-zA-Z0-9\\s]+|[^\\-a-zA-Z0-9\\s]+$", "");
@@ -60,6 +60,9 @@ public class SnippetFinder {
     public void findSnipet(String word, int n) {
         word = word.toLowerCase();
         ArrayList<Integer> positions = index.get(word);
+        if (positions == null){
+            return;
+        }
         for (int k = 0; k < positions.size(); k++) {
             int position = positions.get(k);
 
