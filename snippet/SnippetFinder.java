@@ -15,13 +15,14 @@ public class SnippetFinder {
     String text;
     String[] stringArray;
     ArrayList<String> textArray = new ArrayList<>();
+    ArrayList<String> textArray2 = new ArrayList<>();
     HashMap<String, ArrayList<Integer>> index = new HashMap<>();
 
 
     public void init(int doublingTimes) {
         try {
 
-            text = readFile("/media/extradikke/UbuntuData/programming/java/algorithmsInholland/src/snippet/copperfield.txt", StandardCharsets.UTF_8);
+            text = readFile("/media/extradikke/UbuntuData/programming/java/algorithmsInholland/src/snippet/text16.txt", StandardCharsets.UTF_8);
             for (int i = 0; i < doublingTimes; i++) {
                 text += text;
             }
@@ -30,7 +31,7 @@ public class SnippetFinder {
 
             for (String s : stringArray) {
                 if (!s.equals("")) {
-                    textArray.add(s.toLowerCase());
+                    textArray.add(s);
                 }
             }
 
@@ -38,6 +39,7 @@ public class SnippetFinder {
 
             for (int i = 0; i < textArray.size(); i++) {
                 String word = textArray.get(i).replaceAll("^[^\\-a-zA-Z0-9\\s]+|[^\\-a-zA-Z0-9\\s]+$", "");
+                textArray2.add(word);
                 ArrayList<Integer> positions = new ArrayList<>();
                 if (index.containsKey(word)) {
                     positions = index.get(word);
@@ -57,10 +59,10 @@ public class SnippetFinder {
         return new String(encoded, encoding);
     }
 
-    public void findSnipet(String word, int n) {
+    public void findSnippet(String word, int n) {
         word = word.toLowerCase();
         ArrayList<Integer> positions = index.get(word);
-        if (positions == null){
+        if (positions == null) {
             return;
         }
         for (int k = 0; k < positions.size(); k++) {
@@ -88,7 +90,31 @@ public class SnippetFinder {
         }
     }
 
-    public int getTextSize(){
+    public void findSnippetNaive(String word, int value) {
+        int count = 1;
+        for (int i = 0; i < textArray.size(); i++) {
+            int min = i - (value + 1);
+            int max = i + (value + 1);
+            if (textArray2.get(i).toLowerCase().equals(word)) {
+                if (min < 0) {
+                    System.out.println("to small value");
+                    min = 0;
+                } else if (max > textArray.size()) {
+                    System.out.println("to big value");
+                    max = textArray.size() - 1;
+                }
+                System.out.print(count + ". ");
+                for (int j = min; j <= max; j++) {
+                    System.out.print(textArray.get(j) + " ");
+                }
+                count++;
+                System.out.println();
+            }
+        }
+    }
+
+
+    public int getTextSize() {
         return textArray.size();
     }
 
